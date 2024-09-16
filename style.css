@@ -1,0 +1,37 @@
+.downyata {
+   font-family: monospace;
+}
+
+.col {
+   display: flex;
+}
+
+.a {
+   filter: contrast(300%);
+}
+
+.stat {
+   padding: 10px 20px;
+   border-radius: 5px;
+   background-color: #eee;
+   width: fit-content;
+}
+
+.gostinnia {
+   filter: contrast(3000%) invert(100%);
+}
+
+.gosti {
+   margin-left: 100px;
+}
+
+.nameV {
+	font-weight: 900;
+}
+
+.magistral {
+	padding: 10px;
+	background-color: black;
+	color: white;
+	width: fit-content;
+}
