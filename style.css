@@ -36,3 +36,17 @@
 	color: white;
 	width: fit-content;
 }
+
+.elevator {
+	height: 900px;
+	padding: 10px;
+	background-color: black;
+	width: fit-content;
+}
+
+.cabine {
+	width: 60px;
+	height: 80px;
+	background-color: red;
+	border-radius: 4px;
+}
