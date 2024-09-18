@@ -10,9 +10,9 @@ const сая = document.querySelector('.сая');
 const cMag = document.querySelector('.c-mag');
 const canvas = document.querySelector('.can');
 const ctx = canvas.getContext('2d');
-function sleep(ms) {
+const sleep = (ms) => {
 	return new Promise(resolve => setTimeout(resolve, ms));
-}
+};
 const r = () => {
 	ctx.strokeStyle = 'gray';
 	ctx.moveTo(0, 10);
@@ -28,14 +28,13 @@ const r = () => {
 r();
 let v0 = 0;
 let v = 0;
-let x = 0;
+let vMax = 10;
 let x0 = 0;
 let y0 = 10;
-let t = 0;
+let x = 0;
 let t0 = 0;
+let t = 0;
 let a = 0.5;
-let vMax = 10;
-let fl = true;
 const f = async () => {
 	while (x <= 1000) {
 		if (v < vMax || x > 500) {
