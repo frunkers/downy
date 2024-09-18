@@ -14,14 +14,15 @@ const sleep = (ms) => {
 	return new Promise(resolve => setTimeout(resolve, ms));
 };
 const i = new Image();
-i.src = "./images/Group9.jpg";
+i.src = "./images/r.jpg";
+const width = 172;
 const r = () => {
 	ctx.strokeStyle = 'gray';
 	for (let w = 0; w < 17; w++) {
-		ctx.drawImage(i, w * 94, 0, 94, 30);
+		ctx.drawImage(i, w * width, 0, width, 100);
 	}
 	for (let w = 0; w < 17; w++) {
-		ctx.drawImage(i, w * 94, 80, 94, 30);
+		ctx.drawImage(i, w * width, 200, width, 100);
 	}
 };
 i.addEventListener("load", () => {
@@ -31,7 +32,7 @@ let v0 = 0;
 let v = 0;
 let vMax = 10;
 let x0 = 0;
-let y0 = 21;
+let y0 = 56;
 let x = 0;
 let t0 = 0;
 let t = 0;
@@ -63,7 +64,7 @@ const f = async () => {
 		}
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		r();
-		ctx.font = '20px serif';
+		ctx.font = '30px serif';
 		ctx.fillText('🛸', x, y0);
 		t += 0.5;
 		await sleep(20);
