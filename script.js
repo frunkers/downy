@@ -13,24 +13,25 @@ const ctx = canvas.getContext('2d');
 const sleep = (ms) => {
 	return new Promise(resolve => setTimeout(resolve, ms));
 };
+const i = new Image();
+i.src = "./images/Group9.jpg";
 const r = () => {
 	ctx.strokeStyle = 'gray';
-	ctx.moveTo(0, 10);
-	ctx.lineTo(1500, 10);
-	ctx.stroke();
-	ctx.moveTo(0, 50);
-	ctx.lineTo(1500, 50);
-	ctx.stroke();
-	ctx.fillStyle = 'orange';
-	ctx.fillText('[БВ]', 0, 10);
-	ctx.fillText('[ЧВ]', 0, 50);
+	for (let w = 0; w < 17; w++) {
+		ctx.drawImage(i, w * 94, 0, 94, 30);
+	}
+	for (let w = 0; w < 17; w++) {
+		ctx.drawImage(i, w * 94, 80, 94, 30);
+	}
 };
-r();
+i.addEventListener("load", () => {
+	r();
+});
 let v0 = 0;
 let v = 0;
 let vMax = 10;
 let x0 = 0;
-let y0 = 10;
+let y0 = 21;
 let x = 0;
 let t0 = 0;
 let t = 0;
@@ -62,7 +63,8 @@ const f = async () => {
 		}
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		r();
-		ctx.fillText('🚡', x, y0);
+		ctx.font = '20px serif';
+		ctx.fillText('🛸', x, y0);
 		t += 0.5;
 		await sleep(20);
 	}
