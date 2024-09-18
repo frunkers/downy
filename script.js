@@ -52,11 +52,10 @@ const f = async () => {
 			}
 		}
 		if (x > 500) {
-			if (a === 0 && fl) {
+			if (a === 0) {
 				t = 0;
 				x0 = x;
 				a = -0.2;
-				fl = false;
 			}
 			if (v === 0) {
 				break;
@@ -69,9 +68,9 @@ const f = async () => {
 		await sleep(20);
 	}
 };
-f();
+// f();
 bvBtn.addEventListener('click', () => {
-	f('bv');
+	f();
 });
 // chvBtn.addEventListener('click', () => {
 // 	v('chv');
