@@ -26,48 +26,56 @@ const r = () => {
 	ctx.fillText('[ЧВ]', 0, 50);
 };
 r();
-const v = async () => {
-	nameBV.style.color = 'red';
-	setTimeout(() => {
-		nameBV.style.color = 'white';
-	}, 10000);
-	for (let i = 0; i < 100; i++) {
+let v0 = 0;
+let v = 0;
+let x = 0;
+let x0 = 0;
+let y0 = 10;
+let t = 0;
+let t0 = 0;
+let a = 0.5;
+let vMax = 10;
+let fl = true;
+const f = async () => {
+	while (x <= 1000) {
+		if (v < vMax || x > 500) {
+			v = v0 + a * t;
+			x = x0 + v0 * t + a * t ** 2 / 2;
+		} else if (v >= vMax) {
+			if (a !== 0) {
+				t = 0;
+				x0 = x;
+				v0 = v;
+				a = 0;
+			} else {
+				x = x0 + v * t;
+			}
+		}
+		if (x > 500) {
+			if (a === 0 && fl) {
+				t = 0;
+				x0 = x;
+				a = -0.2;
+				fl = false;
+			}
+			if (v === 0) {
+				break;
+			}
+		}
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		r();
-		ctx.fillText('👽', i * 10, 10);
-		for (let j = 0; j < 10; j++) {
-			const solX = Math.random() * 11 - 5; // (10 - (-10) + 1) - 10 = 21 - 10
-			const solY = Math.random() * 11 - 5;
-			ctx.fillStyle = 'red';
-			ctx.fillRect((i * 10 - 5) + solX, 10 + solY, 1, 1);
-		}
-		await sleep(40);
+		ctx.fillText('🚡', x, y0);
+		t += 0.5;
+		await sleep(20);
 	}
-	// const f = () => {
-	// 	const el = document.querySelector(`.${v}.pizda-${i}`)
-	// 	el.style.color = '#FC0';
-	// 	el.style.textShadow = '#FC0 1px 0 10px';
-	// 	r();
-	// 	el.innerHTML = '👽';
-	// 	const a = () => new Promise((res) => res(setTimeout(() => {
-	// 		el.style.color = 'white';
-	// 		el.style.textShadow = '';
-	// 		el.innerHTML = '=';
-	// 		i++;
-	// 		if (i < 100) {
-	// 			f();
-	// 		}
-	// 	}, 40)));
-	// 	a();
-	// };
-	// f();
 };
+f();
 bvBtn.addEventListener('click', () => {
-	v('bv');
+	f('bv');
 });
-chvBtn.addEventListener('click', () => {
-	v('chv');
-});
+// chvBtn.addEventListener('click', () => {
+// 	v('chv');
+// });
 setInterval(() => {
 	сая.style.filter = 'invert(1000%)';
 	const a = () => new Promise((res) => res(setTimeout(() => {
