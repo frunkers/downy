@@ -13,26 +13,29 @@ const ctx = canvas.getContext('2d');
 const sleep = (ms) => {
 	return new Promise(resolve => setTimeout(resolve, ms));
 };
+const g = new Image();
+g.src = "./images/w.png";
 const i = new Image();
 i.src = "./images/r.jpg";
-const width = 172;
+const width = 134;
 const r = () => {
 	ctx.strokeStyle = 'gray';
 	for (let w = 0; w < 17; w++) {
 		ctx.drawImage(i, w * width, 0, width, 100);
 	}
-	for (let w = 0; w < 17; w++) {
-		ctx.drawImage(i, w * width, 200, width, 100);
-	}
+	// for (let w = 0; w < 17; w++) {
+	// 	ctx.drawImage(i, w * width, 200, width, 100);
+	// }
 };
 i.addEventListener("load", () => {
 	r();
 });
+
 let v0 = 0;
 let v = 0;
 let vMax = 10;
 let x0 = 0;
-let y0 = 56;
+let y0 = 10;
 let x = 0;
 let t0 = 0;
 let t = 0;
@@ -64,8 +67,9 @@ const f = async () => {
 		}
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		r();
-		ctx.font = '30px serif';
-		ctx.fillText('🛸', x, y0);
+		ctx.drawImage(g, x, y0, 20, 50);
+		// ctx.font = '20px serif';
+		// ctx.fillText('🛸', x, y0);
 		t += 0.5;
 		await sleep(20);
 	}
