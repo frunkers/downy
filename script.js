@@ -1,4 +1,5 @@
 "use strict";
+import { drawMagistral, init } from "./modules/magistral.js";
 const bvBtn = document.querySelector('.bvBtn');
 const chvBtn = document.querySelector('.chvBtn');
 const nameBV = document.querySelector('.nameBV');
@@ -13,70 +14,9 @@ const ctx = canvas.getContext('2d');
 const sleep = (ms) => {
 	return new Promise(resolve => setTimeout(resolve, ms));
 };
-const g = new Image();
-g.src = "./images/w.png";
-const i = new Image();
-i.src = "./images/r.jpg";
-const width = 134;
-const r = () => {
-	ctx.strokeStyle = 'gray';
-	for (let w = 0; w < 17; w++) {
-		ctx.drawImage(i, w * width, 0, width, 100);
-	}
-	// for (let w = 0; w < 17; w++) {
-	// 	ctx.drawImage(i, w * width, 200, width, 100);
-	// }
-};
-i.addEventListener("load", () => {
-	r();
-});
-
-let v0 = 0;
-let v = 0;
-let vMax = 10;
-let x0 = 0;
-let y0 = 11;
-let x = 0;
-let t0 = 0;
-let t = 0;
-let a = 0.5;
-const f = async () => {
-	while (x <= 1000) {
-		if (v < vMax || x > 500) {
-			v = v0 + a * t;
-			x = x0 + v0 * t + a * t ** 2 / 2;
-		} else if (v >= vMax) {
-			if (a !== 0) {
-				t = 0;
-				x0 = x;
-				v0 = v;
-				a = 0;
-			} else {
-				x = x0 + v * t;
-			}
-		}
-		if (x > 500) {
-			if (a === 0) {
-				t = 0;
-				x0 = x;
-				a = -0.2;
-			}
-			if (v === 0) {
-				break;
-			}
-		}
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		r();
-		ctx.drawImage(g, x, y0, 28, 50);
-		// ctx.font = '20px serif';
-		// ctx.fillText('🛸', x, y0);
-		t += 0.5;
-		await sleep(20);
-	}
-};
-// f();
+init(ctx);
 bvBtn.addEventListener('click', () => {
-	f();
+	drawMagistral(canvas, ctx);
 });
 // chvBtn.addEventListener('click', () => {
 // 	v('chv');
