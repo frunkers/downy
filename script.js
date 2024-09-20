@@ -35,7 +35,7 @@ let v0 = 0;
 let v = 0;
 let vMax = 10;
 let x0 = 0;
-let y0 = 10;
+let y0 = 11;
 let x = 0;
 let t0 = 0;
 let t = 0;
@@ -67,7 +67,7 @@ const f = async () => {
 		}
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		r();
-		ctx.drawImage(g, x, y0, 20, 50);
+		ctx.drawImage(g, x, y0, 28, 50);
 		// ctx.font = '20px serif';
 		// ctx.fillText('🛸', x, y0);
 		t += 0.5;
