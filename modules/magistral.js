@@ -1,3 +1,6 @@
+const canvas = document.querySelector('.can');
+const ctx = canvas.getContext('2d');
+
 const sleep = (ms) => {
 	return new Promise(resolve => setTimeout(resolve, ms));
 };
@@ -8,15 +11,15 @@ const road = new Image();
 road.src = "./images/road.jpg";
 const width = 134;
 
-const initRender = (ctx) => {
+const initRender = () => {
 	for (let i = 0; i < 17; i++) {
 		ctx.drawImage(road, i * width, 0, width, 100);
 	}
 };
 
-export const init = (ctx) => {
+export const init = () => {
 	road.addEventListener("load", () => {
-		initRender(ctx);
+		initRender();
 	});
 };
 
@@ -29,7 +32,7 @@ let x = 0;
 let t = 0;
 let a = 0.5;
 
-export const drawMagistral = async (canvas, ctx) => {
+export const drawMagistral = async () => {
 	while (x <= 1000) {
 		if (v < vMax || x > 500) {
 			v = v0 + a * t;
@@ -55,7 +58,7 @@ export const drawMagistral = async (canvas, ctx) => {
 			}
 		}
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		initRender(ctx);
+		initRender();
 		ctx.drawImage(nlo, x, y0, 28, 50);
 		// ctx.font = '20px serif';
 		// ctx.fillText('🛸', x, y0);
