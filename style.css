@@ -26,26 +26,54 @@
 }
 
 .nameV {
-	font-weight: 900;
+   font-weight: 900;
 }
 
 .magistral {
-	margin-top: 10px;
-	/* background-color: black; */
-	color: white;
-	width: fit-content;
+   display: flex;
+   margin-top: 10px;
+   margin-left: 10px;
+   position: relative;
+}
+
+.road {
+   width: 134px;
+   height: 100px;
+}
+
+.train {
+   position: absolute;
+   top: 30px;
+   left: 0;
+   width: 30px;
+   height: 30px;
+   background-color: red;
+}
+
+.magistral__sity {
+   position: absolute;
+   top: -30px;
+   display: flex;
+}
+.magistral__sity::before {
+   content: "";
+   position: absolute;
+   top: 20px;
+   height: 120px;
+   width: 3px;
+   background-color: lightcoral;
 }
 
 .elevator {
-	height: 900px;
-	padding: 10px;
-	background-color: black;
-	width: fit-content;
+   height: 900px;
+   padding: 10px;
+   background-color: black;
+   width: fit-content;
 }
 
 .cabine {
-	width: 60px;
-	height: 80px;
-	background-color: red;
-	border-radius: 4px;
+   width: 60px;
+   height: 80px;
+   background-color: red;
+   border-radius: 4px;
 }
