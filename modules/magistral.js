@@ -113,7 +113,7 @@ const sity = sityStyles(0);
 sity.style.color = 'dodgerblue';
 export const drawMagistral = async () => {
 	let i = 0;
-	const timeStop = 3000;
+	const timeStop = 60000;
 	const coords = Object.values(sities);
 	let e = 0;
 	sity.style.color = 'black';
@@ -133,7 +133,7 @@ export const drawMagistral = async () => {
 		await sleep(timeStop);
 		clearInterval(q);
 		timer.style.display = 'none';
-		sity.style.color = 'black';
+		sity.style.color = 'midnightblue';
 	};
 	while (e < 100) {
 		e++;
