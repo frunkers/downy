@@ -34,7 +34,7 @@
    margin-top: 100px;
    margin-left: 10px;
    position: relative;
-	width: fit-content;
+   width: fit-content;
 }
 
 .magistral__road {
@@ -44,34 +44,61 @@
 
 .magistral__train {
    position: absolute;
-   top: 30px;
+   top: 32px;
    left: 0;
-   width: 30px;
-   height: 30px;
-   background-color: red;
+   width: 34px;
+   height: 34px;
+   background-color: rgba(255, 255, 255, 0.7);
+   border-radius: 4px;
+   font-size: 20px;
+   color: #222;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 2px solid white;
+   z-index: 10;
+}
+
+.magistral__train.reverse {
+   transform: rotateY(180deg);
 }
 
 .magistral__sity {
    position: absolute;
    top: -35px;
-	font-weight: 700;
-	
+   font-weight: 700;
+	color: midnightblue;
+	font-size: 17px;
 }
+
 .magistral__sity::before {
    content: "";
    position: absolute;
-   top: 20px;
-   height: 120px;
+   top: 25px;
+   height: 44px;
    width: 3px;
-   background-color: lightcoral;
+   background-color: slateblue;
+	border: 1px dashed white;
 }
 
 .magistral__timer {
-	display: none;
-	position: absolute;
-	top: -55px;
-	left: 0;
-	color: #333;
+   display: none;
+   position: absolute;
+   top: -55px;
+   left: 0;
+   color: #333;
+}
+
+.timer__label {
+	font-weight: 700;
+	color: white;
+	padding: 0 2px;
+   background-color: slateblue;
+   border-radius: 4px;
+}
+
+.timer__content {
+	margin-left: 2px;
 }
 
 .elevator {

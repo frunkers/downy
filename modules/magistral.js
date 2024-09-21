@@ -1,6 +1,7 @@
 const magistral = document.querySelector('.magistral');
 const timer = document.querySelector('.magistral__timer');
-for (let i = 0; i < 15; i++) {
+const timerContent = document.querySelector('.timer__content');
+for (let i = 0; i < 20; i++) {
 	const item = `<img src="../images/road.jpg" class="magistral__road" />`
 	magistral.insertAdjacentHTML('beforeend', item);
 }
@@ -9,7 +10,7 @@ const sities = {
 	'DownЯта': 0,
 	'Тест1': 500,
 	'Тест2': 1000,
-	// 'Гавриловка': 1500,
+	'Гавриловка': 1900,
 }
 for (const name in sities) {
 	let item = document.createElement('div');
@@ -109,7 +110,7 @@ const sityStyles = (x) => {
 	return sity;
 };
 const sity = sityStyles(0);
-sity.style.color = 'red';
+sity.style.color = 'dodgerblue';
 export const drawMagistral = async () => {
 	let i = 0;
 	const timeStop = 3000;
@@ -120,27 +121,33 @@ export const drawMagistral = async () => {
 		const sityX = coords[i];
 		await directionGo(sityX);
 		const sity = sityStyles(coords[i]);
-		sity.style.color = 'red';
+		sity.style.color = 'dodgerblue';
 		timer.style.left = coords[i] + "px";
 		timer.style.display = 'block';
 		let t = timeStop / 1000;
-		timer.innerHTML = `через ${t} сек.`;
+		timerContent.innerHTML = `через ${t} сек`;
 		const q = setInterval(() => {
 			t -= 1;
-			timer.innerHTML = `через ${t} сек.`;
+			timerContent.innerHTML = `через ${t} сек`;
 		}, 1000);
 		await sleep(timeStop);
 		clearInterval(q);
 		timer.style.display = 'none';
 		sity.style.color = 'black';
 	};
-	while (e < 10) {
+	while (e < 100) {
 		e++;
 		while (i < coords.length - 1) {
+			if (train.classList.contains('reverse')) {
+				train.classList.remove('reverse');
+			}
 			i += 1;
 			await run(go);
 		}
 		while (i > 0) {
+			if (!train.classList.contains('reverse')) {
+				train.classList.add('reverse');
+			}
 			i -= 1;
 			await run(gow);
 		}
