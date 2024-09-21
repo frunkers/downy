@@ -1,9 +1,10 @@
 const magistral = document.querySelector('.magistral');
+const timer = document.querySelector('.magistral__timer');
 for (let i = 0; i < 15; i++) {
-	const item = `<img src="../images/road.jpg" class="road" />`
+	const item = `<img src="../images/road.jpg" class="magistral__road" />`
 	magistral.insertAdjacentHTML('beforeend', item);
 }
-const train = document.querySelector('.train');
+const train = document.querySelector('.magistral__train');
 const sities = {
 	'DownЯта': 0,
 	'Тест1': 500,
@@ -15,6 +16,7 @@ for (const name in sities) {
 	item.innerHTML = name;
 	item.classList.add('magistral__sity');
 	item.style.left = sities[name] + "px";
+	item.setAttribute('attr-name', name);
 	magistral.insertAdjacentElement('beforeend', item);
 }
 const sleep = (ms) => {
@@ -99,23 +101,48 @@ const gow = async (sityX) => {
 		await sleep(20);
 	}
 };
+const sityStyles = (x) => {
+	const sityName = Object.keys(sities).find((el) => {
+		return sities[el] === x;
+	});
+	const sity = document.querySelector(`.magistral__sity[attr-name=${sityName}]`);
+	return sity;
+};
+const sity = sityStyles(0);
+sity.style.color = 'red';
 export const drawMagistral = async () => {
 	let i = 0;
-	const timeStop = 1000;
+	const timeStop = 3000;
 	const coords = Object.values(sities);
 	let e = 0;
+	sity.style.color = 'black';
+	const run = async (directionGo) => {
+		const sityX = coords[i];
+		await directionGo(sityX);
+		const sity = sityStyles(coords[i]);
+		sity.style.color = 'red';
+		timer.style.left = coords[i] + "px";
+		timer.style.display = 'block';
+		let t = timeStop / 1000;
+		timer.innerHTML = `через ${t} сек.`;
+		const q = setInterval(() => {
+			t -= 1;
+			timer.innerHTML = `через ${t} сек.`;
+		}, 1000);
+		await sleep(timeStop);
+		clearInterval(q);
+		timer.style.display = 'none';
+		sity.style.color = 'black';
+	};
 	while (e < 10) {
 		e++;
-		while (i <= coords.length - 1) {
+		while (i < coords.length - 1) {
 			i += 1;
-			const sityX = coords[i];
-			await go(sityX);
-			// await sleep(timeStop);
+			await run(go);
 		}
-		while (i >= 0) {
+		while (i > 0) {
 			i -= 1;
-			const sityX = coords[i];
-			await gow(sityX);
+			await run(gow);
 		}
 	}
 };
