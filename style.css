@@ -34,6 +34,7 @@
    margin-top: 10px;
    margin-left: 10px;
    position: relative;
+	width: fit-content;
 }
 
 .road {
@@ -54,6 +55,7 @@
    position: absolute;
    top: -30px;
    display: flex;
+	
 }
 .magistral__sity::before {
    content: "";

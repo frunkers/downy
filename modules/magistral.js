@@ -6,7 +6,9 @@ for (let i = 0; i < 15; i++) {
 const train = document.querySelector('.train');
 const sities = {
 	'DownЯта': 0,
-	'Гавриловка': 1000,
+	'Тест1': 500,
+	'Тест2': 1000,
+	'Гавриловка': 1500,
 }
 for (const name in sities) {
 	let item = document.createElement('div');
@@ -30,8 +32,12 @@ const breakA = -0.2;
 const go = async (sityX) => {
 	const breakX = sityX - (0 - vMax ** 2) / (2 * breakA);
 	a = goA;
-	while (x <= sityX) {
-		if (v < vMax || x > breakX) {
+	v = 0;
+	v0 = 0;
+	x0 = x;
+	t = 0;
+	while (x < sityX) {
+		if (v < vMax || x >= breakX) {
 			v = v0 + a * t;
 			x = x0 + v0 * t + a * t ** 2 / 2;
 		} else if (v >= vMax) {
@@ -44,7 +50,41 @@ const go = async (sityX) => {
 				x = x0 + v * t;
 			}
 		}
-		if (x > breakX) {
+		if (x >= breakX) {
+			if (a === 0) {
+				t = 0;
+				x0 = x;
+				a = breakA;
+			}
+		}
+		train.style.left = Math.round(x) + "px";
+		t += 0.5;
+		await sleep(20);
+	}
+};
+const gow = async (sityX) => {
+	v0 = 0;
+	v = 0;
+	x0 = x;
+	t = 0;
+	const breakX = sityX + (0 - vMax ** 2) / (2 * breakA);
+	a = goA;
+	while (x > sityX) {
+		// console.log(v);
+		if (v > -vMax || x <= breakX) {
+			v = v0 - a * t;
+			x = x0 + v0 * t - a * t ** 2 / 2;
+		} else if (v >= -vMax) {
+			if (a !== 0) {
+				t = 0;
+				x0 = x;
+				v0 = v;
+				a = 0;
+			} else {
+				x = x0 + v * t;
+			}
+		}
+		if (x <= breakX) {
 			if (a === 0) {
 				t = 0;
 				x0 = x;
@@ -54,7 +94,7 @@ const go = async (sityX) => {
 				break;
 			}
 		}
-		train.style.left = x + "px";
+		train.style.left = Math.round(x) + "px";
 		t += 0.5;
 		await sleep(20);
 	}
@@ -65,6 +105,14 @@ export const drawMagistral = async () => {
 	while (i <= coords.length - 1) {
 		const sityX = coords[i];
 		await go(sityX);
+		// await sleep(1000);
 		i += 1;
+	}
+	i -= 2;
+	while (i >= 0) {
+		const sityX = coords[i];
+		await gow(sityX);
+		// await sleep(1000);
+		i -= 1;
 	}
 };
