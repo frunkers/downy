@@ -1,15 +1,28 @@
 "use strict";
 
-import { drawMagistral } from "./modules/magistral.js";
-const bvBtn = document.querySelector('.bvBtn');
-const сая = document.querySelector('.сая');
-const sleep = (ms) => {
-	return new Promise(resolve => setTimeout(resolve, ms));
-};
-bvBtn.addEventListener('click', () => {
-	drawMagistral();
-});
+import { Line } from "./modules/magistral/Line.js";
+import { sleep } from "./modules/common.js";
 
+const bvBtn = document.querySelector('.bvBtn');
+
+{
+	const sities = {
+		'DownЯта': 0,
+		'Тест1': 500,
+		'Тест2': 1000,
+		'Гавриловка': 1900,
+	}
+	const road = new Image();
+	road.src = "../images/road.jpg";
+	const blueLine = new Line(road, sities);
+	blueLine.draw();
+
+	bvBtn.addEventListener('click', () => {
+		blueLine.draw();
+	});
+}
+
+const сая = document.querySelector('.сая');
 setInterval(() => {
 	сая.style.filter = 'invert(1000%)';
 	const a = () => new Promise((res) => res(setTimeout(() => {
