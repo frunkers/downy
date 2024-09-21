@@ -8,7 +8,7 @@ const sities = {
 	'DownЯта': 0,
 	'Тест1': 500,
 	'Тест2': 1000,
-	'Гавриловка': 1500,
+	// 'Гавриловка': 1500,
 }
 for (const name in sities) {
 	let item = document.createElement('div');
@@ -100,19 +100,22 @@ const gow = async (sityX) => {
 	}
 };
 export const drawMagistral = async () => {
-	let i = 1;
+	let i = 0;
+	const timeStop = 1000;
 	const coords = Object.values(sities);
-	while (i <= coords.length - 1) {
-		const sityX = coords[i];
-		await go(sityX);
-		// await sleep(1000);
-		i += 1;
-	}
-	i -= 2;
-	while (i >= 0) {
-		const sityX = coords[i];
-		await gow(sityX);
-		// await sleep(1000);
-		i -= 1;
+	let e = 0;
+	while (e < 10) {
+		e++;
+		while (i <= coords.length - 1) {
+			i += 1;
+			const sityX = coords[i];
+			await go(sityX);
+			// await sleep(timeStop);
+		}
+		while (i >= 0) {
+			i -= 1;
+			const sityX = coords[i];
+			await gow(sityX);
+		}
 	}
 };
