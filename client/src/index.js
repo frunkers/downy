@@ -1,11 +1,41 @@
 import "./css/reset.css";
 import "./css/style.css";
-import "./api.js";
+import { API } from "./api.js";
 import { Line } from "./modules/magistral/Line.js";
 import { sleep } from "./modules/common.js";
 import blueRoad from "./images/road.jpg";
 
-const bvBtn = document.querySelector('.bvBtn');
+const wrapper = document.querySelector('#app');
+if (true) {
+	wrapper.style.display = 'none';
+	const login = document.querySelector("#app__login");
+	login.style.display = 'block';
+	login.addEventListener('submit', (evt) => {
+		evt.preventDefault();
+		const name = document.querySelector('.app__login-name').value;
+		const password = document.querySelector('.app__login-password').value;
+		if (name !== '' && password !== '') {
+			const data = {
+				name,
+				password,
+			};
+			API.sendLoginData(data);
+		} else {
+			alert('Заполни данные пользователя!');
+		}
+
+		const requestIsValidLoginDataFn = (isValid) => {
+			console.log(isValid);
+			if (isValid) {
+				login.style.display = 'none';
+				wrapper.style.display = 'block';
+			} else {
+				alert('Неверные данные пользователя.');
+			}
+		};
+		API.getIsValidLoginData(requestIsValidLoginDataFn);
+	});
+}
 
 {
 	// const magistral = document.querySelector('.magistral');
@@ -24,6 +54,7 @@ const bvBtn = document.querySelector('.bvBtn');
 	console.log(sity);
 }
 
+const bvBtn = document.querySelector('.bvBtn');
 // bvBtn.addEventListener('click', () => {
 // 	blueLine.draw();
 // });

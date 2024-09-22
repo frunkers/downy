@@ -7,9 +7,9 @@ if (process.env.NODE_ENV === "development") {
 	baseURL = `http://localhost:${PORT}`;
 }
 
-// if (process.env.NODE_ENV === "production") {
-//    baseURL = `https://airmonitor.servermc.ru:${PORT}`;
-// }
+if (process.env.NODE_ENV === "production") {
+   baseURL = `https://airmonitor.servermc.ru:${PORT}`;
+}
 
 const socket = io(baseURL);
 
@@ -18,13 +18,13 @@ socket.on("connect", () => {
 });
 
 export const API = {
-	// sendCurrentTimeTrigger: () => {
-	//    socket.emit("current-time-trigger:send");
-	// },
+	sendLoginData: (data) => {
+		socket.emit("login-data:send", data);
+	},
 
-	// requestCurrentTime: (callback) => {
-	//    socket.on("current-time:request", (currentTime) => {
-	//       callback(currentTime);
-	//    });
-	// },
+	getIsValidLoginData: (callback) => {
+		socket.on("is-valid-login-data:request", (isValid) => {
+			callback(isValid);
+		});
+	},
 };
