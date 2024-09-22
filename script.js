@@ -6,22 +6,24 @@ import { sleep } from "./modules/common.js";
 const bvBtn = document.querySelector('.bvBtn');
 
 {
+	// const magistral = document.querySelector('.magistral');
 	const sities = {
 		'DownЯта': 0,
 		'Тест1': 500,
 		'Тест2': 1000,
 		'Гавриловка': 1900,
 	}
+	const line = document.querySelector('.line.line--blue');
 	const road = new Image();
-	road.src = "../images/road.jpg";
-	const blueLine = new Line(road, sities);
+	road.src = "./images/road.jpg";
+	const blueLine = new Line(line, road, sities);
 	blueLine.draw();
-
-	bvBtn.addEventListener('click', () => {
-		blueLine.draw();
-	});
 }
 
+	// bvBtn.addEventListener('click', () => {
+	// 	blueLine.draw();
+	// });
+	
 const сая = document.querySelector('.сая');
 setInterval(() => {
 	сая.style.filter = 'invert(1000%)';

@@ -29,7 +29,7 @@
    font-weight: 900;
 }
 
-.magistral {
+.line {
    display: flex;
    margin-top: 100px;
    margin-left: 10px;
@@ -37,12 +37,12 @@
    width: fit-content;
 }
 
-.magistral__road {
+.line__road {
    width: 134px;
    height: 100px;
 }
 
-.magistral__train {
+.line__train {
    position: absolute;
    top: 32px;
    left: 0;
@@ -59,29 +59,29 @@
    z-index: 10;
 }
 
-.magistral__train.reverse {
+.line__train.reverse {
    transform: rotateY(180deg);
 }
 
-.magistral__sity {
+.line__sity {
    position: absolute;
    top: -35px;
    font-weight: 700;
-	color: midnightblue;
-	font-size: 17px;
+   color: midnightblue;
+   font-size: 17px;
 }
 
-.magistral__sity::before {
+.line__sity::before {
    content: "";
    position: absolute;
    top: 25px;
    height: 44px;
    width: 3px;
    background-color: slateblue;
-	border: 1px dashed white;
+   border: 1px dashed white;
 }
 
-.magistral__timer {
+.line__timer {
    display: none;
    position: absolute;
    top: -55px;
@@ -89,16 +89,16 @@
    color: #333;
 }
 
-.timer__label {
-	font-weight: 700;
-	color: white;
-	padding: 0 2px;
+.line__timer-label {
+   font-weight: 700;
+   color: white;
+   padding: 0 2px;
    background-color: slateblue;
    border-radius: 4px;
 }
 
-.timer__content {
-	margin-left: 2px;
+.line__timer-content {
+   margin-left: 2px;
 }
 
 .elevator {
